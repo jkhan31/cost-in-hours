@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cost in Hours – Is It Worth Buying This?</title>
+  <meta name="description" content="Convert a price into hours of work to help decide whether to buy now, wait, or skip.">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="nsbhN2vEye6p0tLEXeTX2g8-gpjJaH269V3gztgge_Y" />
+  <meta name="google-adsense-account" content="ca-pub-8627526200357743">  
+  <script>
+    // Immediate theme application to prevent FOUC
+    (function() {
+      const saved = localStorage.getItem('cost_in_hours_theme');
+      if (saved === 'dark' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="root">
+    <header>
+      <h1>Cost in Hours</h1>
+      <h2>Is it worth buying this?</h2>
+      <p>This tool converts the cost of a purchase into hours of your time, so you can decide whether to buy now, wait, or skip.</p>
+    </header>
+  </div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

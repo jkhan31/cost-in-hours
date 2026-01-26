@@ -1,0 +1,5 @@
+{
+  "name": "Cost in Hours",
+  "description": "A calm utility to help you pause before a purchase by converting price into the time it takes to earn it.",
+  "requestFramePermissions": []
+}
