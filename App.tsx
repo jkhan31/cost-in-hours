@@ -204,13 +204,12 @@ export default function App() {
             {darkMode ? '☀️' : '🌙'}
           </button>
           
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <h1 className="text-3xl font-light tracking-tight text-slate-900 dark:text-white">🕓 Cost in Hours</h1>
-          </div>
+          <h1 className="text-3xl font-light tracking-tight text-slate-900 dark:text-white mb-2" aria-label="Cost in Hours">🕓 Cost in Hours</h1>
           
           <h2 className="text-slate-500 dark:text-slate-400 text-lg mb-4">Is it worth buying this?</h2>
-          <p className="text-slate-400 dark:text-slate-500 text-sm max-w-md mx-auto leading-relaxed">
-            This tool converts the cost of a purchase into hours of your time, so you can decide whether to buy now, wait, or skip.
+          <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto leading-relaxed mb-8">
+            Convert a price into time to see what a purchase really costs you.
+            No advice, no tracking — just a moment to pause and decide.
           </p>
         </header>
 
@@ -314,7 +313,18 @@ export default function App() {
 
               {showDecision && !showWaitOptions && (
                 <div className="space-y-4 animate-in fade-in slide-in-from-top-2">
-                  <p className="text-slate-400 dark:text-slate-500 text-s italic">
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">
+                    After seeing the time cost, choose what feels right:
+                  </p>
+                  <ul className="text-slate-500 dark:text-slate-400 text-xs mb-4 space-y-1 text-left max-w-xs mx-auto">
+                    <li>• <strong>Buy</strong> — you're comfortable with the trade</li>
+                    <li>• <strong>Wait</strong> — revisit the decision later</li>
+                    <li>• <strong>Skip</strong> — not worth it for you</li>
+                  </ul>
+                  <p className="text-slate-400 dark:text-slate-500 text-xs italic mb-4">
+                    The tool does not recommend an option.
+                  </p>
+                  <p className="text-slate-400 dark:text-slate-500 text-xs italic">
                     Only items you choose to wait on will be saved.
                   </p>
                   <div className="grid grid-cols-3 gap-3">
@@ -411,6 +421,31 @@ export default function App() {
           )}
         </section>
 
+        <section className="mb-12">
+          <details className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+            <summary className="px-6 py-4 cursor-pointer text-slate-600 dark:text-slate-400 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+              About this tool
+            </summary>
+            <div className="px-6 pb-6 pt-2 text-slate-500 dark:text-slate-400 text-sm leading-relaxed space-y-3 border-t border-slate-100 dark:border-slate-800">
+              <p>
+                Cost in Hours is a simple web tool that helps you think about purchases in terms of time, not just money.
+              </p>
+              <p>
+                Instead of focusing only on price, the tool shows how many hours of work a purchase represents based on your income. For many people, seeing cost expressed as time makes trade-offs easier to understand.
+              </p>
+              <p>
+                This tool does not tell you what you should buy or avoid. It does not track spending, set budgets, or judge decisions. It simply converts price into time and gives you space to decide.
+              </p>
+              <p>
+                Only items you choose to wait on are stored, and they are saved locally on your device. There are no accounts, no analytics, and no notifications.
+              </p>
+              <p>
+                Cost in Hours is designed to be calm and lightweight — a pause for reflection, not a financial system.
+              </p>
+            </div>
+          </details>
+        </section>
+
         {heldItems.length > 0 && (
           <section className="animate-in fade-in duration-700 mb-12">
             <div className="flex items-center justify-between mb-6 border-b border-slate-200 dark:border-slate-800 pb-2">
@@ -446,12 +481,33 @@ export default function App() {
             </div>
           </section>
         )}
+
+        <section className="mb-12 max-w-xl mx-auto px-6">
+          <h3 className="text-xl font-light text-slate-700 dark:text-slate-300 mb-4">
+            Is this purchase worth the time it costs?
+          </h3>
+          <div className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed space-y-3">
+            <p>
+              When deciding whether to buy something, it's easy to focus only on the price. But money is often earned by trading time and effort, which can make the true cost harder to see.
+            </p>
+            <p>
+              Cost in Hours helps by translating a purchase price into time worked. An item that feels affordable at first may represent several hours — or days — of work. Seeing that time cost can naturally prompt reflection.
+            </p>
+            <p>
+              Some people use this tool to pause before impulse purchases, compare options using time rather than money, or decide whether to buy now, wait, or skip. Others simply use it to gain clarity.
+            </p>
+            <p>
+              There's no right or wrong outcome. The tool exists to create space, not pressure.
+            </p>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
       <footer className="py-12 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-xl mx-auto px-6 text-center text-slate-400 dark:text-slate-500 text-sm leading-relaxed">
-          <p className="mb-4">All data is saved locally on your device.</p>
+          <p className="mb-2">All data is saved locally on your device.</p>
+          <p className="mb-2 text-xs">Your data stays on your device. No accounts. No tracking.</p>
           
           <div className="inline-block text-left max-w-md mx-auto">
             <button 
