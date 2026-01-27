@@ -204,11 +204,11 @@ export default function App() {
             {darkMode ? '☀️' : '🌙'}
           </button>
           
-          <h1 className="text-3xl font-light tracking-tight text-slate-900 dark:text-white mb-2">🕓 Cost in Hours</h1>
+          <h1 className="text-3xl font-light tracking-tight text-slate-900 dark:text-white mb-2" aria-label="Cost in Hours">🕓 Cost in Hours</h1>
           
           <h2 className="text-slate-500 dark:text-slate-400 text-lg mb-4">Is it worth buying this?</h2>
           <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto leading-relaxed mb-8">
-            Convert a price into time to see what a purchase really costs you. 
+            Convert a price into time to see what a purchase really costs you.
             No advice, no tracking — just a moment to pause and decide.
           </p>
         </header>
@@ -324,7 +324,7 @@ export default function App() {
                   <p className="text-slate-400 dark:text-slate-500 text-xs italic mb-4">
                     The tool does not recommend an option.
                   </p>
-                  <p className="text-slate-400 dark:text-slate-500 text-s italic">
+                  <p className="text-slate-400 dark:text-slate-500 text-xs italic">
                     Only items you choose to wait on will be saved.
                   </p>
                   <div className="grid grid-cols-3 gap-3">
