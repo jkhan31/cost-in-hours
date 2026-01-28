@@ -446,6 +446,59 @@ export default function App() {
           </details>
         </section>
 
+        {/* Contact Form */}
+        <section className="mb-12">
+          <form 
+            name="contact" 
+            method="POST" 
+            data-netlify="true" 
+            action="/thanks.html"
+            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 space-y-4"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            
+            <h3 className="text-lg font-medium text-slate-700 dark:text-slate-300 mb-2">Contact</h3>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">
+              Have a question or issue? You can reach the site owner using the form below.
+            </p>
+            
+            <div>
+              <label htmlFor="email" className="block text-sm text-slate-600 dark:text-slate-400 mb-1.5">
+                Email
+              </label>
+              <input 
+                type="email" 
+                id="email"
+                name="email" 
+                className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600"
+              />
+              <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
+                Optional — include only if you'd like a response.
+              </p>
+            </div>
+            
+            <div>
+              <label htmlFor="message" className="block text-sm text-slate-600 dark:text-slate-400 mb-1.5">
+                Message *
+              </label>
+              <textarea 
+                id="message"
+                name="message" 
+                required
+                rows={4}
+                className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600 resize-none"
+              ></textarea>
+            </div>
+            
+            <button 
+              type="submit"
+              className="w-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg py-3 font-medium hover:bg-slate-800 dark:hover:bg-white transition-colors"
+            >
+              Send
+            </button>
+          </form>
+        </section>
+
         {heldItems.length > 0 && (
           <section className="animate-in fade-in duration-700 mb-12">
             <div className="flex items-center justify-between mb-6 border-b border-slate-200 dark:border-slate-800 pb-2">
