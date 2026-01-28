@@ -38,6 +38,11 @@
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="contact" />
+    <input type="email" name="email" />
+    <textarea name="message"></textarea>
+  </form>
   <div id="root">
     <header>
       <h1>Cost in Hours</h1>

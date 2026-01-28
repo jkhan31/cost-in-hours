@@ -37,6 +37,12 @@ export default function App() {
   // Privacy State
   const [showPrivacy, setShowPrivacy] = useState(false);
 
+  // Contact Form State
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [contactFormSubmitted, setContactFormSubmitted] = useState(false);
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
+
   // Persistence State
   const [heldItems, setHeldItems] = useState<HeldItem[]>([]);
 
@@ -189,6 +195,28 @@ export default function App() {
     const rawValue = stripNonNumeric(e.target.value);
     setWeeklyHours(rawValue);
     if (errorMsg) setErrorMsg(null);
+  };
+
+  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // Submit to Netlify
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData as any).toString()
+    })
+      .then(() => {
+        setContactFormSubmitted(true);
+        setContactEmail('');
+        setContactMessage('');
+      })
+      .catch((error) => {
+        console.error('Form submission error:', error);
+      });
   };
 
   return (
@@ -507,7 +535,77 @@ export default function App() {
       <footer className="py-12 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-xl mx-auto px-6 text-center text-slate-400 dark:text-slate-500 text-sm leading-relaxed">
           <p className="mb-2">All data is saved locally on your device.</p>
-          <p className="mb-2 text-xs">Your data stays on your device. No accounts. No tracking.</p>
+          <p className="mb-6 text-xs">Your data stays on your device. No accounts. No tracking.</p>
+          
+          <div className="inline-block text-left max-w-md mx-auto mb-6">
+            <button 
+              onClick={() => {
+                setShowContactForm(!showContactForm);
+                if (contactFormSubmitted) setContactFormSubmitted(false);
+              }}
+              className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 underline underline-offset-4 transition-colors text-xs font-medium focus:outline-none"
+            >
+              Contact
+            </button>
+            
+            {showContactForm && !contactFormSubmitted && (
+              <div className="mt-4 p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 text-xs space-y-3 animate-in fade-in slide-in-from-top-1 duration-200">
+                <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1">Contact</h4>
+                <p className="text-slate-500 dark:text-slate-400 text-xs">
+                  Have a question or issue? You can reach the site owner using the form below.
+                </p>
+                <form onSubmit={handleContactSubmit} name="contact" method="POST" data-netlify="true">
+                  <input type="hidden" name="form-name" value="contact" />
+                  
+                  <div className="mb-3">
+                    <label htmlFor="footer-email" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                      Email
+                    </label>
+                    <input 
+                      type="email" 
+                      id="footer-email"
+                      name="email" 
+                      value={contactEmail}
+                      onChange={(e) => setContactEmail(e.target.value)}
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-slate-400 dark:focus:ring-slate-600"
+                    />
+                    <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">
+                      Optional — include only if you'd like a response.
+                    </p>
+                  </div>
+                  
+                  <div className="mb-3">
+                    <label htmlFor="footer-message" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                      Message *
+                    </label>
+                    <textarea 
+                      id="footer-message"
+                      name="message" 
+                      value={contactMessage}
+                      onChange={(e) => setContactMessage(e.target.value)}
+                      required
+                      rows={3}
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-slate-400 dark:focus:ring-slate-600 resize-none"
+                    ></textarea>
+                  </div>
+                  
+                  <button 
+                    type="submit"
+                    className="w-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded py-2 text-xs font-medium hover:bg-slate-800 dark:hover:bg-white transition-colors"
+                  >
+                    Send
+                  </button>
+                </form>
+              </div>
+            )}
+
+            {showContactForm && contactFormSubmitted && (
+              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 text-xs animate-in fade-in slide-in-from-top-1 duration-200">
+                <p className="text-green-700 dark:text-green-400 font-medium mb-1">Message sent</p>
+                <p className="text-green-600 dark:text-green-500">Thanks. Your message has been received.</p>
+              </div>
+            )}
+          </div>
           
           <div className="inline-block text-left max-w-md mx-auto">
             <button 
