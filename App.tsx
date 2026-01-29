@@ -537,7 +537,7 @@ export default function App() {
           <p className="mb-2">All data is saved locally on your device.</p>
           <p className="mb-6 text-xs">Your data stays on your device. No accounts. No tracking.</p>
           
-          <div className="inline-block text-left max-w-md mx-auto mb-6">
+          <div className="inline-block text-left max-w-md mx-auto mb-6 mr-6">
             <button 
               onClick={() => {
                 setShowContactForm(!showContactForm);
